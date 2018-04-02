@@ -50,16 +50,19 @@ app.get("/scrape", function(req, res) {
                 title,
                 link
             });
-            //loop to check for duplicates
-            dbdata = db.scrapedData.find({})
-                // var dbCheck = results.each(function(i, ) {
+            // //loop to check for duplicates
+            // dbdata = db.scrapedData.find({})
+            //     // var dbCheck = results.each(function(i, ) {
 
-            // })
-            db.scrapedData.insert({ results })
+            // // })
+            // db.scrapedData.insert({ results })
         });
-        var cnnscrape = res.json(results)
+        // var cnnscrape = res.json(results)
+        // console.log(cnnscrape)
+        // res.json(results)
+        // console.log(results)
         res.render("index", {
-            user: cnnscrape
+            user: "anything"
         });
     })
 })

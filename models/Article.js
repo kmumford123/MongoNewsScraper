@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var uniqueValidator = require('mongoose-unique-validator');
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -26,6 +27,8 @@ var ArticleSchema = new Schema({
     }
 });
 
+//check for duplicate database entries and report them just like any other validation error
+ArticleSchema.plugin(uniqueValidator);
 // This creates our model from the above schema, using mongoose's model method
 var Article = mongoose.model("Article", ArticleSchema);
 

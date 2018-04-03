@@ -1,36 +1,42 @@
-// Route 1
+// Route to scrape for data
 // =======
-module.exports = function() {
+var Scraperoute = function(scraper) {
 
+    // A GET route for scraping the echoJS website
     app.get("/scrape", function(req, res) {
-        request("https://www.cnn.com/specials/last-50-stories", function(error, response, html) {
-            // Load the body of the HTML into cheerio
-            var $ = cheerio.load(html);
-            // Empty array to save our scraped data
-            var results = [];
+        // First, we grab the body of the html with request
+        axios.get("https://www.cnn.com/specials/last-50-stories").then(function(response) {
+            // Then, we load that into cheerio and save it to $ for a shorthand selector
+            var $ = cheerio.load(response.data);
 
+            // Now, we grab every h2 within an article tag, and do the following:
             $("h3.cd__headline").each(function(i, element) {
-                // Save the text of the h4-tag as "title"
-                var title = $(element).text();
-                // Find the h4 tag's parent a-tag, and save it's href value as "link"
-                var link = $(element).children().attr("href");
-                // Make an object with data we scraped for this h4 and push it to the results array
+                // Save an empty result object
+                var result = {};
 
-                results.push({
-                    title,
-                    link
-                });
-                //loop to check for duplicates
-                dbdata = db.scrapedData.find({})
-                    // var dbCheck = results.each(function(i, ) {
+                // Add the text and href of every link, and save them as properties of the result object
+                result.title = $(this)
+                    .text();
+                result.link = $(this)
+                    .children("a")
+                    .attr("href");
 
-                // })
-                db.scrapedData.insert({ results })
+                // Create a new Article using the `result` object built from scraping
+                db.Article.create(result)
+                    .then(function(dbArticle) {
+                        // View the added result in the console
+                        console.log(dbArticle);
+                    })
+                    .catch(function(err) {
+                        // If an error occurred, send it to the client
+                        return res.json(err);
+                    });
             });
-            var cnnscrape = res.json(results)
-            res.render("index", {
-                user: cnnscrape
-            });
-        })
-    })
+
+            // If we were able to successfully scrape and save an Article, send a message to the client
+            res.send("Scrape Complete");
+        });
+    });
 }
+
+module.exports = Scraperoute;

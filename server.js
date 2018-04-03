@@ -27,7 +27,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("ds227119.mlab.com:27119");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+mongoose.connect(MONGODB_URI);
+
+// Connect to the Mongo DB
+// mongoose.connect("mongodb://localhost/scraper");
 
 // Routes
 
@@ -71,7 +75,7 @@ app.get("/scrape", function(req, res) {
 app.get("/articles", function(req, res) {
     // TODO: Finish the route so it grabs all of the articles
     // Find all Articles
-    db.Article.find({})
+    db.Article.find({}).sort({ _id:-1 })
         .then(function(dbArticle) {
             // If all Articles are successfully found, send them back to the client
             res.json(dbArticle);
@@ -89,7 +93,7 @@ app.get("/articles/:id", function(req, res) {
     // Finish the route so it finds one article using the req.params.id,
     // and run the populate method with "note",
     // then responds with the article with the note included
-    db.Article.find({ _id: req.params.id })
+    db.Article.findOne({ _id: req.params.id })
         // Specify that we want to populate the retrieved libraries with any associated notes
         .populate("note")
         .then(function(dbArticle) {
@@ -110,12 +114,16 @@ app.post("/articles/:id", function(req, res) {
     db.Note.create(req.body)
         // then find an article from the req.params.id
         // and update it's "note" property with the _id of the new note
-        .then(function(dbArticle) {
-            return db.Article.findOne({ _id: req.params.id }, { note: dbArticle._id })
+        .then(function(dbNote) {
+            return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id })
                 .populate("note")
-                .then(function(dbNote) {
-                    res.json(dbNote)
+                .then(function(dbArticle) {
+                    res.json(dbArticle)
                 })
+                .catch(function(err) {
+                    // If an error occurred, send it to the client
+                    res.json(err);
+                });
         })
 
 });

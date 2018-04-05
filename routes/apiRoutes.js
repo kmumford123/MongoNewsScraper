@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var newsRoomControllers = require("../controllers/newsRoomControllers");
+var newsRoomControllers = require("../controllers");
 
 //localhost/products/
 router.get("/scrapecnn", newsRoomControllers.cnnScrape);

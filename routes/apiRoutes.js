@@ -1,13 +1,13 @@
 var router = require("express").Router();
-var newsRoomControllers = require("../controllers");
+var nrc = require("../controllers");
 
 //localhost/products/
-router.get("/scrapecnn", newsRoomControllers.cnnScrape);
-router.get("/scrapefoxnews", newsRoomControllers.foxScrape);
-router.get("/scrapemsnbc", newsRoomControllers.msnbcScrape);
-router.get("/articles", newsRoomControllers.find);
-router.get("/articles/:id", newsRoomControllers.findOne);
-router.post("/articles/:id", newsRoomControllers.createNote);
+router.get("/scrapecnn", nrc.newsRoomControllers.cnnScrape);
+router.get("/scrapefoxnews", nrc.newsRoomControllers.foxScrape);
+router.get("/scrapemsnbc", nrc.newsRoomControllers.msnbcScrape);
+router.get("/articles", nrc.newsRoomControllers.find);
+router.get("/articles/:id", nrc.newsRoomControllers.findOne);
+router.post("/articles/:id", nrc.newsRoomControllers.createNote);
 
 module.exports = router;
 

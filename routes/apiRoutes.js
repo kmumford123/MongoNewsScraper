@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var nrc = require("../controllers");
+var nrc = require("./controllers");
 
 //localhost/products/
 router.get("/scrapecnn", nrc.newsRoomControllers.cnnScrape);

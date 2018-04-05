@@ -1,8 +1,13 @@
-var router = router("express").Router();
-var productController = require("../controllers/productControllers");
+var router = require("express").Router();
+var newsRoomControllers = require("../controllers/newsRoomControllers");
 
-router.get("/:id", productController.find);
-router.post("/new", productController.create);
+//localhost/products/
+router.get("/scrapecnn", newsRoomControllers.cnnScrape);
+router.get("/scrapefoxnews", newsRoomControllers.foxScrape);
+router.get("/scrapemsnbc", newsRoomControllers.msnbcScrape);
+router.get("/articles", newsRoomControllers.find);
+router.get("/articles/:id", newsRoomControllers.findOne);
+router.post("/articles/:id", newsRoomControllers.createNote);
 
 module.exports = router;
 

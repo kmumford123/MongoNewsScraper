@@ -9,7 +9,7 @@ $.getJSON("/articles", function(data) {
             <a href="#">News</a>
         </div>
          <h3><a href="https://${data[i].domain}${data[i].link}" data-id="${data[i]._id}" class="font-pt mb-2">${data[i].title}</a></h3>
-        <span class="gazette-post-date mb-2">March 29, 2016</span>
+        <span class="gazette-post-date mb-2">${data[i].date}</span>
         <a href="#" class="post-total-comments">3 Comments</a>
         `);
     }

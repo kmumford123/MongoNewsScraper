@@ -33,12 +33,9 @@ app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
 mongoose.connect(MONGODB_URI);
 
-// Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/scraper");
-
 // Routes
 app.use(routes);
-
+console.log(routes)
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");

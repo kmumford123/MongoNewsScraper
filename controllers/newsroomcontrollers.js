@@ -65,6 +65,7 @@ module.exports = {
             result.link = $(this)
                 .children("a")
                 .attr("href");
+            result.domain = "cnn.com"
 
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
@@ -80,9 +81,9 @@ module.exports = {
 
         // If we were able to successfully scrape and save an Article, send a message to the client
         res.send("Scrape Complete");
-        window.alert("You have successfully scraped CNN articles, redirecting to your results!!!");
-        window.location.href = "#scrapelocale";
+        // res.send(alert("You have successfully scraped CNN articles, redirecting to your results!!!"));
     });
+        res.redirect("/#scrapelocale");
     },
     foxScrape:  function (req, res) {
 // First, we grab the body of the html with request
@@ -103,6 +104,7 @@ module.exports = {
                 .children("h2.title")
                 .children("a")
                 .attr("href");
+            result.domain = "foxnews.com"
 
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
@@ -118,9 +120,8 @@ module.exports = {
 
         // If we were able to successfully scrape and save an Article, send a message to the client
         res.send("Scrape Complete");
-        window.alert("You have successfully scraped FoxNews articles, redirecting to your results!!!");
-        window.location.href = "#scrapelocale";
     });
+    res.redirect("/#scrapelocale");
     },
     msnbcScrape: function (req, res) {
         // First, we grab the body of the html with request
@@ -129,17 +130,18 @@ module.exports = {
         var $ = cheerio.load(response.data);
 
         // Now, we grab every h2 within an article tag, and do the following:
-        $("header.info-header").each(function(i, element) {
+        $("h2.featured-slider__teaser__title").each(function(i, element) {
             // Save an empty result object
             var result = {};
 
             // Add the text and href of every link, and save them as properties of the result object
             result.title = $(this)
-                .children("h2.title")
                 .text();
             result.link = $(this)
                 .children("a")
                 .attr("href");
+            result.domain = "msnbc.com"
+            console.log(`${result.title} ${result.link}`)
 
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
@@ -153,9 +155,8 @@ module.exports = {
                 });
         // If we were able to successfully scrape and save an Article, send a message to the client
         res.send("Scrape Complete");
-        window.alert("You have successfully scraped MSNBC articles, redirecting to your results!!!");
-        window.location.href = "#scrapelocale";
             });
+        res.redirect("/#scrapelocale");
         });
     }
 

@@ -8,7 +8,7 @@ $.getJSON("/articles", function(data) {
         <div class="gazette-post-tag">
             <a href="#">News</a>
         </div>
-         <h3><a href="https://cnn.com${data[i].link}" data-id="${data[i]._id}" class="font-pt mb-2">${data[i].title}</a></h3>
+         <h3><a href="https://${data[i].domain}${data[i].link}" data-id="${data[i]._id}" class="font-pt mb-2">${data[i].title}</a></h3>
         <span class="gazette-post-date mb-2">March 29, 2016</span>
         <a href="#" class="post-total-comments">3 Comments</a>
         `);

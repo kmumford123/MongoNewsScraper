@@ -269,11 +269,13 @@
                                 <img src="img/blog-img/2.jpg" alt="">
                             </div>
                             <div class="todays-post-content articles">
+                            <div class="gazette-post-tag">
+                            <a href="#">NEWS</a>
+                            </div>
                             {{#each articles}}
                                 <h3><a href="{{domain}}{{link}}" data-id="{{_id}}" class="font-pt mb-2">{{title}}</a></h3>
                                 <span class="gazette-post-date mb-2">{{date}}</span>
                             {{/each}}
-                            
                                 <a class="post-total-comments" data-id="{{_id}}">Comments</a>
                                  <div id="{{_id}}"> </div>
                                 <div class="young-notes"></div>

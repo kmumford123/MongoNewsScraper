@@ -1,6 +1,9 @@
 var express = require("express");
+var handlebars = require("handlebars")
 var bodyParser = require("body-parser");
 var exprhbs = require("express-handlebars");
+var MomentHandler = require("handlebars.moment");
+const hdbhelpers = require("handlebars-helpers")
 var logger = require("morgan");
 var routes = require("./routes")
 var mongoose = require("mongoose");
@@ -28,8 +31,10 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
 app.engine("handlebars", exprhbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
+MomentHandler.registerHelpers(handlebars);
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";

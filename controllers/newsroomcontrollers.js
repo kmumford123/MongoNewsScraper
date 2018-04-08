@@ -58,19 +58,20 @@ module.exports = {
         axios.get("https://www.cnn.com/specials/last-50-stories").then(function(response) {
             // Load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
-
+            // var url = Handlebars.escapeExpression(my_weblink.url);
             // Now, we grab every h2 within an article tag, and do the following:
             $("h3.cd__headline").each(function(i, element) {
                 // Save an empty result object
                 var result = {};
 
-                // Add the text and href of every link, and save them as properties of the result object
+                // Add the text and href of every weblink, and save them as properties of the result object
                 result.title = $(this)
                     .text();
-                result.link = $(this)
+                result.weblink = $(this)
                     .children("a")
                     .attr("href");
-                result.domain = "cnn.com";
+                result.mydomain = "cnn.com";
+                // "<a href='" + url + "'></a>";
                 result.date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
                 // Create a new Article using the `result` object built from scraping
@@ -102,15 +103,15 @@ module.exports = {
                 // Save an empty result object
                 var result = {};
 
-                // Add the text and href of every link, and save them as properties of the result object
+                // Add the text and href of every weblink, and save them as properties of the result object
                 result.title = $(this)
                     .children("h2.title")
                     .text();
-                result.link = $(this)
+                result.weblink = $(this)
                     .children("h2.title")
                     .children("a")
                     .attr("href");
-                result.domain = "foxnews.com";
+                result.mydomain = "foxnews.com";
                 result.date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
                 // Create a new Article using the `result` object built from scraping
@@ -141,13 +142,13 @@ module.exports = {
                 // Save an empty result object
                 var result = {};
 
-                // Add the text and href of every link, and save them as properties of the result object
+                // Add the text and href of every weblink, and save them as properties of the result object
                 result.title = $(this)
                     .text();
-                result.link = $(this)
+                result.weblink = $(this)
                     .children("a")
                     .attr("href");
-                result.domain = "msnbc.com";
+                result.mydomain = "msnbc.com";
                 result.date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
                 // Create a new Article using the `result` object built from scraping

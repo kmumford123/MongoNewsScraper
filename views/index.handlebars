@@ -192,7 +192,7 @@
                 </div>
                 <h3><a href="" class="font-pt">World Leader in Half Truths</a></h3>
                 <div class="date">
-                    <a href="#">March 29, 2018</a>
+                    <a >{{moment d "dddd MMMM DD, YYYY"}}</a>
                 </div>
             </div>
         </div>
@@ -201,11 +201,11 @@
             <!-- Single Blog Post Content -->
             <div class="single-blog-post-content">
                 <div class="tags">
-                    <a action="/scrapefoxnews" method="get">FOX</a>
+                    <a href="/scrapemsnbc">FOX</a>
                 </div>
                 <h3><a href="#" class="font-pt">FakeNews</a></h3>
                 <div class="date">
-                    <a href="#">March 29, 2018</a>
+                    <a >{{moment d "dddd MMMM DD, YYYY"}}</a>
                 </div>
             </div>
         </div>
@@ -218,7 +218,7 @@
                 </div>
                 <h3><a href="" class="font-pt">Liberal Media Central </a></h3>
                 <div class="date">
-                    <a href="#">March 29, 2018</a>
+                    <a >{{moment d "dddd MMMM DD, YYYY"}}</a>
                 </div>
             </div>
         </div>
@@ -263,117 +263,44 @@
                         <div class="gazette-heading">
                             <h4><a id="scrapelocale">today’s most popular</a></h4>
                         </div>
-                        <!-- Single Today Post -->
+                        
+
+ <!-- Single Today Post -->
                         <div class="gazette-single-todays-post d-md-flex align-items-start mb-50">
                             <div class="todays-post-thumb">
                                 <img src="img/blog-img/2.jpg" alt="">
                             </div>
                             <div class="todays-post-content articles">
-                            <div class="gazette-post-tag">
-                            <a href="#">NEWS</a>
+                                {{#each articles}}
+                                <div class="gazette-post-tag">
+                                <a href="#">NEWS</a>
+                                </div>
+                                    
+                                    <h3><a {{#link}} href="{{link mydomain weblink}}" {{/link}} class="font-pt mb-2">{{title}}</a></h3>
+                                    
+                                    <span class="gazette-post-date mb-2">Scraped: {{date}}</span>
+                                    <br>
+                                    <a class="post-total-comments" data-id="{{_id}}">Comments</a>
+                                     <div id="{{_id}}"> </div>
+                                     <br>
+                                    {{/each}}
+                                <!-- Post Tag -->
                             </div>
-                            {{#each articles}}
-                                <h3><a href="{{domain}}{{link}}" data-id="{{_id}}" class="font-pt mb-2">{{title}}</a></h3>
-                                <span class="gazette-post-date mb-2">{{date}}</span>
-                            {{/each}}
-                                <a class="post-total-comments" data-id="{{_id}}">Comments</a>
-                                 <div id="{{_id}}"> </div>
-                                <div class="young-notes"></div>
-                                <br>
-                                <br>
+                            <div id="notes">
+                            {{#each notes}}
+                                     {{#if notes}}
+                                    <div class="young-notes">{{title}} </div>
+                                    <br>
+                                    <br>
+                                     {{/if}}
+                                    {{/each}} 
                             </div>
-                        </div id="notes"></div>
                         </div>
                         <!-- Single Today Post -->
                     </div>
 
                 <div class="col-12 col-lg-3 col-md-6">
-                    <div class="sidebar-area">
-                        <!-- Breaking News Widget -->
-                        <div class="breaking-news-widget">
-                            <div class="widget-title">
-                                <h5>breaking news</h5>
-                            </div>
-                            <!-- Single Breaking News Widget -->
-                            <div class="single-breaking-news-widget">
-                                <img src="img/blog-img/bn-1.jpg" alt="">
-                                <div class="breakingnews-title">
-                                    <p>breaking news</p>
-                                </div>
-                                <div class="breaking-news-heading gradient-background-overlay">
-                                    <h5 class="font-pt">China leads new global skyscraper record</h5>
-                                </div>
-                            </div>
-                            <!-- Single Breaking News Widget -->
-                            <div class="single-breaking-news-widget">
-                                <img src="img/blog-img/bn-2.jpg" alt="">
-                                <div class="breakingnews-title">
-                                    <p>breaking news</p>
-                                </div>
-                                <div class="breaking-news-heading gradient-background-overlay">
-                                    <h5 class="font-pt">Can a zebra crossing change its stripes?</h5>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Don't Miss Widget -->
-                        <div class="donnot-miss-widget">
-                            <div class="widget-title">
-                                <h5>Don't miss</h5>
-                            </div>
-                            <!-- Single Don't Miss Post -->
-                            <div class="single-dont-miss-post d-flex mb-30">
-                                <div class="dont-miss-post-thumb">
-                                    <img src="img/blog-img/dm-1.jpg" alt="">
-                                </div>
-                                <div class="dont-miss-post-content">
-                                    <a href="#" class="font-pt">EU council reunites</a>
-                                    <span>Nov 29, 2017</span>
-                                </div>
-                            </div>
-                            <!-- Single Don't Miss Post -->
-                            <div class="single-dont-miss-post d-flex mb-30">
-                                <div class="dont-miss-post-thumb">
-                                    <img src="img/blog-img/dm-2.jpg" alt="">
-                                </div>
-                                <div class="dont-miss-post-content">
-                                    <a href="#" class="font-pt">A new way to travel the world</a>
-                                    <span>March 29, 2016</span>
-                                </div>
-                            </div>
-                            <!-- Single Don't Miss Post -->
-                            <div class="single-dont-miss-post d-flex mb-30">
-                                <div class="dont-miss-post-thumb">
-                                    <img src="img/blog-img/dm-3.jpg" alt="">
-                                </div>
-                                <div class="dont-miss-post-content">
-                                    <a href="#" class="font-pt">Why choose a bank?</a>
-                                    <span>March 29, 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Advert Widget -->
-                        <div class="advert-widget">
-                            <div class="widget-title">
-                                <h5>Advert</h5>
-                            </div>
-                            <div class="advert-thumb mb-30">
-                                <a href="#"><img src="img/bg-img/add.png" alt=""></a>
-                            </div>
-                        </div>
-                        <!-- Subscribe Widget -->
-                        <div class="subscribe-widget">
-                            <div class="widget-title">
-                                <h5>subscribe</h5>
-                            </div>
-                            <div class="subscribe-form">
-                                <form action="#">
-                                    <input type="email" name="email" id="subs_email" placeholder="Your Email">
-                                    <button type="submit">subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                             
                 </div>
             </div>
         </div>

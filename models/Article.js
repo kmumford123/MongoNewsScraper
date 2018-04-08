@@ -14,11 +14,11 @@ var ArticleSchema = new Schema({
         required: true
     },
     // `link` is required and of type String
-    link: {
+    weblink: {
         type: String,
         required: true
     },
-    domain: {
+    mydomain: {
         type: String,
         required: true
     },

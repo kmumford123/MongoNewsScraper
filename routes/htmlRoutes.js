@@ -1,11 +1,14 @@
 var router = require("express").Router();
-var exphbs = require("express-handlebars");
+var htmlCtr = require("../controllers");
 
-// router.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// router.set("view engine", "handlebars");
-
-router.get("/", function (req, res) {
-    res.render("index");
-});
+router.get("/", htmlCtr.htmlController.find);
 
 module.exports = router;
+
+
+
+// router.get("/", function (req, res) {
+//     res.render("index");
+// });
+
+// module.exports = router;

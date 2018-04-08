@@ -2,4 +2,5 @@
 
 module.exports = {
     newsRoomControllers: require("./newsroomcontrollers"),
+    htmlController: require("./htmlcontroller"),
 };

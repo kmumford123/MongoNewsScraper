@@ -20,6 +20,7 @@ module.exports = {
         .catch(function(err) {
             // If an error occurs, send the error back to the client
             res.json(err);
+            console.log(dbArticle.note)
         });
     },
     createNote: function(req, res) {

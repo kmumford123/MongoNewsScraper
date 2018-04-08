@@ -26,8 +26,10 @@ var app = express();
 app.use(logger("dev"));
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
-// Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+app.use(bodyParser.json());
+
+app.engine("handlebars", exprhbs({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";

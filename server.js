@@ -27,7 +27,7 @@ app.use(logger("dev"));
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(express.static("public"));
 app.engine("handlebars", exprhbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 

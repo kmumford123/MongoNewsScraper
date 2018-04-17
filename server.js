@@ -18,7 +18,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3002;
 
 // Initialize Express
 var app = express();
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-app.engine("handlebars", exprhbs({defaultLayout: "main"}));
+app.engine("handlebars", exprhbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 MomentHandler.registerHelpers(handlebars);
 

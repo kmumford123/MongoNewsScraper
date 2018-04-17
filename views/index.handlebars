@@ -276,7 +276,7 @@
                                 <a href="#">NEWS</a>
                                 </div>
                                     
-                                    <h3><a {{#link}} href="{{link mydomain weblink}}" {{/link}} class="font-pt mb-2">{{title}}</a></h3>
+                                    <h3><a {{#link}}"{{link mydomain weblink}}" {{/link}} class="font-pt mb-2">{{title}}</a></h3>
                                     
                                     <span class="gazette-post-date mb-2">Scraped: {{date}}</span>
                                     <br>
@@ -288,11 +288,11 @@
                             </div>
                             <div id="notes">
                             {{#each notes}}
-                                     {{#if notes}}
+                                     {{#unless notes}}
                                     <div class="young-notes">{{title}} </div>
                                     <br>
                                     <br>
-                                     {{/if}}
+                                     {{/unless}}
                                     {{/each}} 
                             </div>
                         </div>
